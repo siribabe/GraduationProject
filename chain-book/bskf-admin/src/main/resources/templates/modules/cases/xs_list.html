@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>推荐列表</title>
+    <#include "/header.html">
+    <script src="${request.contextPath}/statics/libs/ajaxupload.js"></script>
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+            <div class="form-group col-sm-2">
+                <input type="text" class="form-control" v-model="q.paramKey" @keyup.enter="query" placeholder="请输入检索关键词">
+            </div>
+            <a class="btn btn-default" @click="query">查询</a>
+<!--            <#if shiro.hasPermission("data:cases:save")>-->
+<!--            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>-->
+<!--            </#if>-->
+<!--            <#if shiro.hasPermission("data:cases:update")>-->
+<!--            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>-->
+<!--            </#if>-->
+<!--            <#if shiro.hasPermission("data:cases:delete")>-->
+<!--            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>-->
+<!--            </#if>-->
+<!--            <a class="btn btn-warning" @click="borrow"><i class=""></i>&nbsp;收藏</a>-->
+            <a class="btn btn-warning" @click="back"><i class=""></i>&nbsp;返回</a>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+</div>
+<script src="${request.contextPath}/statics/js/modules/data/xs_list.js?_${.now?long}"></script>
+</body>
+</html>

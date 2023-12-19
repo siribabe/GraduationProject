@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>产品信息</title>
+    <#include "/header.html">
+</head>
+<style>
+    .ui-jqgrid tr.jqgrow td {
+        white-space: normal !important;
+        height: auto;
+    }
+</style>
+<body>
+<div id="rrapp" v-cloak>
+    <div>
+        <table id="jqGrid"></table>
+    </div>
+    <input type="button" style="float: right;" class="btn btn-warning" @click="back" value="返回"/>
+</div>
+<script src="${request.contextPath}/statics/js/echarts.js"></script>
+<script src="${request.contextPath}/statics/js/modules/data/info.js"></script>
+</body>
+</html>

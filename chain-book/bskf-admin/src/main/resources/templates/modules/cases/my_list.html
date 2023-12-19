@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>书籍列表</title>
+    <#include "/header.html">
+    <script src="${request.contextPath}/statics/libs/ajaxupload.js"></script>
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+            <div class="form-group col-sm-2">
+                <input type="text" class="form-control" v-model="q.paramKey" @keyup.enter="query" placeholder="书籍名称">
+            </div>
+            <a class="btn btn-default" @click="query">查询</a>
+
+            <!--<a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>-->
+            <!--<a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>-->
+            <!--<a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>-->
+            <a class="btn btn-warning" @click="backbook"><i class=""></i>&nbsp;归还</a>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2 control-label">书籍名称</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="config.name" placeholder="书籍名称"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">简介</div>
+                <div class="col-sm-10">
+                    <textarea type="text" class="form-control" v-model="config.mark" placeholder="简介"
+                              style="height: 300px"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">书籍售价</div>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" v-model="config.price" placeholder="书籍售价"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">折扣</div>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" v-model="config.discount" placeholder="折扣"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">书籍作者</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="config.zz" placeholder="书籍作者"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">出版社</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="config.cbs" placeholder="出版社"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">版本</div>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" v-model="config.version" placeholder="版本"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">页数</div>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" v-model="config.pn" placeholder="页数"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">字数</div>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" v-model="config.wn" placeholder="字数"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">纸张开数</div>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" v-model="config.bsize" placeholder="纸张开数"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">纸张类型</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="config.paper" placeholder="纸张类型"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">书籍类型</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="config.lx" placeholder="书籍类型多个以，隔开如：计算机科学，生物科技"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">出版时间</div>
+                <div class="col-sm-10">
+                    <input type="date" value="1999-01-13" class="form-control" v-model="config.cbsj"
+                           placeholder="出版时间"/>
+                </div>
+            </div>
+            <div class="grid-btn">
+                <a class="btn btn-primary" id="upload"><i class="fa fa-plus"></i>&nbsp;上传书籍图片</a>
+            </div>
+            <div class="form-group" style="margin-left: 69%;">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="${request.contextPath}/statics/js/modules/data/my_list.js?_${.now?long}"></script>
+</body>
+</html>
